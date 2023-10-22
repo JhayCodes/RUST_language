@@ -1,0 +1,5 @@
+{
+    "rust-analyzer.linkedProjects": [
+        ".\\a10\\Cargo.toml"
+    ]
+}
