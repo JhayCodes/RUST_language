@@ -35,3 +35,6 @@ fn main() {
         Ticket{ price, ..} => println("price = {:?}", price),//match to the ticket struct and fetch only the price.
     }
 }
+
+//Refer to a15
+
