@@ -1,0 +1,29 @@
+Definition:
+enum Result<T,E> {
+    Ok(T),
+    Err(E)
+}
+
+EXAMPLE:
+fn get_sound(name: &str) -> Result<SoundData, String> {
+    if name == "alert" {
+        Ok(SoundData::new("alert")),   
+    } else {
+        Err("unable to find sound data".to_owned())
+    }
+}
+
+let sound = get_sound("alert");
+match sound{
+Ok(_) => println!("sound data located"),
+Err(e) => println!("error: {:?}", e),
+}
+
+RECAP: 
+Result represents either success or failure
+    *Ok(variable_name)
+        The operation was completed 
+    Err(variable_name)
+        The operation failed
+Useful when working with functionality that can potentially failed
+Use Result<T,E> when working with results
