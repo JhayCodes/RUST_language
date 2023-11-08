@@ -1,0 +1,42 @@
+Hashmap
+Collection that stores data as key-value pairs 
+    Data is located using the "key"
+    The data is the "value"
+Similar to definitions in a dictionary
+Very fast to retrieve data using the key.
+
+Difinition
+
+let mut people = HashMap::new();
+people.insert("Susan", 21);
+people.insert("Ed", 13);
+people.insert("Will", 14);
+people.insert("Cathy", 22);
+people.remove("Susan"); //removes data from the HashMap
+
+match people.get("Ed") { //.get(key) gets the value for the key
+    Some(age) => println!("age = {:?}, age),
+    None => println!("not found"),
+}
+
+//Example: iterate
+for (person, age) in people.iter(){ //returns a tupple
+    println!("person = {:?}, age = {:?}", person, age);
+}
+
+for person in people.keys(){
+     println!("person = {:?}", person);   
+}
+
+for age in people.values(){
+     println!("age = {:?}", age);   
+}
+
+//return random
+
+RECAP:
+Store information as key-value pairs 
+    "Key" is used to access the "value"
+Very fast to insert & find data using the key
+Useful when you need to find information and konw exactly where
+it is (via the key).
