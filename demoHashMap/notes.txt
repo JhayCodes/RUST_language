@@ -39,4 +39,4 @@ Store information as key-value pairs
     "Key" is used to access the "value"
 Very fast to insert & find data using the key
 Useful when you need to find information and konw exactly where
-it is (via the key).
+it is (via the key). 
