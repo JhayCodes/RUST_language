@@ -26,3 +26,4 @@ fn main() {
         println!("number = {:?}, content = {:?}", locker_number, content);
     }
 }
+//refer to activity a19
