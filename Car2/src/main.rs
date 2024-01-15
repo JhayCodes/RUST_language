@@ -40,18 +40,34 @@ fn car_factory(color: String, motor: Transmission, roof: bool, miles: u32) -> Ca
     // - Check if order is for Used or New car, then check the roof type 
     // - Print details for New or Used car based on roof type
     //todo!("Add conditional expression: If car is Used age, then check roof type");
-        if miles > 0 {
-            
-            if roof {
-                println!("Prepare a used car: {:?}, {}, Hard top, {} miles\n", motor, color, miles);  
-
-            }else {
-                println!("Prepare a used car: {:?}, {}, Hard top, {} miles\n", motor, color, miles);  
-            }
-        } else{
-            println!("Prepare a new car: {:?}, {}, Hard top, {} miles\n", motor, color, miles); 
         
+        // if miles > 0 {
+            
+        //     if roof {
+        //         println!("Prepare a used car: {:?}, {}, Hard top, {} miles\n", motor, color, miles);  
+
+        //     }else {
+        //         println!("Prepare a used car: {:?}, {}, Hard top, {} miles\n", motor, color, miles);  
+        //     }
+        // } else{
+        //     println!("Prepare a new car: {:?}, {}, Hard top, {} miles\n", motor, color, miles); 
+        
+        // }
+        if car_quality(miles).0 == Age::Used {
+            if roof{
+                println!("Preparing a used car: {:?}, {}, Hard top, {} miles", motor, color, miles);
+        } else {
+            println!("Preparing a used car: {:?}, {}, Convertible, {} miles", motor, color, miles);
         }
+            } else {
+                if roof {
+                    println!("Building a new car: {:?}, {}, Hard top, {} miles", motor, color, miles);
+                } else {
+                    println!("Building a new car: {:?}, {}, Convertible, {} miles", motor, color, miles);
+                }
+            }
+        
+    
         
 
        // todo!("Add conditional expression: If roof is a hard top, print details");
@@ -67,8 +83,8 @@ fn car_factory(color: String, motor: Transmission, roof: bool, miles: u32) -> Ca
         roof: roof,
         age: car_quality(miles)
     }
-}
 
+}
 fn main() {
     // Car order #1: New, Manual, Hard top
     car_factory(String::from("Orange"), Transmission::Manual, true, 0);
