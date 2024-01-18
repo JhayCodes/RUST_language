@@ -52,7 +52,7 @@ fn main() {
     let colors = ["Blue", "Green", "Red","Silver"];
     // Declare the car type and initial values
 
-    let mut car = Car;
+    let mut car : Car;
 
     let mut engine = Transmission::Manual; 
     // Order 3 cars, one car for each type of transmission
