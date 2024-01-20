@@ -1,17 +1,28 @@
 #[derive(PartialEq, Debug)]
-struct Car { color: String, motor: Transmission, roof: bool, age: (Age, u32) }
+struct Car {
+    color: String,
+    motor: Transmission,
+    roof: bool,
+    age: (Age, u32),
+}
 
 #[derive(PartialEq, Debug)]
-enum Transmission { Manual, SemiAuto, Automatic }
+enum Transmission {
+    Manual,
+    SemiAuto,
+    Automatic,
+}
 
 #[derive(PartialEq, Debug)]
-enum Age { New, Used }
+enum Age {
+    New,
+    Used,
+}
 
 // Get the car quality by testing the value of the input argument
 // - miles (u32)
 // Return tuple with car age ("New" or "Used") and mileage
-fn car_quality (miles: u32) -> (Age, u32) {
-
+fn car_quality(miles: u32) -> (Age, u32) {
     // Check if car has accumulated miles
     // Return tuple early for Used car
     if miles > 0 {
@@ -30,7 +41,7 @@ fn car_factory(order: i32, miles: u32) -> Car {
     // Valid color = 1, 2, 3, or 4
     // If color > 4, reduce color to valid index
     let mut color = order as usize;
-    if color > 4 {        
+    while color > 4 {
         // color = 5 --> index 1, 6 --> 2, 7 --> 3, 8 --> 4
         color = color - 4;
     }
@@ -38,19 +49,21 @@ fn car_factory(order: i32, miles: u32) -> Car {
     // Add variety to orders for motor type and roof type
     let mut motor = Transmission::Manual;
     let mut roof = true;
-    if order % 3 == 0 {          // 3, 6, 9
+    if order % 3 == 0 {
+        // 3, 6, 9
         motor = Transmission::Automatic;
-    } else if order % 2 == 0 {   // 2, 4, 8, 10
+    } else if order % 2 == 0 {
+        // 2, 4, 8, 10
         motor = Transmission::SemiAuto;
         roof = false;
-    }                            // 1, 5, 7, 11
+    } // 1, 5, 7, 11
 
     // Return requested "Car"
     Car {
-        color: String::from(colors[(color-1) as usize]),
+        color: String::from(colors[(color - 1) as usize]),
         motor: motor,
         roof: roof,
-        age: car_quality(miles)
+        age: car_quality(miles),
     }
 }
 
@@ -66,39 +79,24 @@ fn main() {
     // Declare a car as mutable "Car" struct
     let mut car: Car;
 
-    // Order 6 cars, increment "order" for each request
-    // Car order #1: Used, Hard top
-    car = car_factory(order, 1000);
-    orders.insert(order, car);
-    println!("Car order {}: {:?}", order, orders.get(&order) );
+    // Start with zero miles
+    let mut miles = 0;
 
-    // Car order #2: Used, Convertible
-    order = order + 1;
-    car = car_factory(order, 2000);
-    orders.insert(order, car);
-    println!("Car order {}: {:?}", order, orders.get(&order) );
+    // Call car_factory to fulfill order
+    // Add order <K, V> pair to "orders" hash map
+    // Call println! to show order details from the hash map
+    while order < 12 {
+        car = car_factory(order, miles);
+        orders.insert(order, car);
+        println!("Car order {}: {:?}", order, orders.get(&order));
 
-    // Car order #3: New, Hard top
-    order = order + 1;
-    car = car_factory(order, 0);
-    orders.insert(order, car);
-    println!("Car order {}: {:?}", order, orders.get(&order) );
+        order = order + 1;
 
-    // Car order #4: New, Convertible
-    order = order + 1;
-    car = car_factory(order, 0);
-    orders.insert(order, car);
-    println!("Car order {}: {:?}", order, orders.get(&order) );
-
-    // Car order #5: Used, Hard top
-    order = order + 1;
-    car = car_factory(order, 3000);
-    orders.insert(order, car);
-    println!("Car order {}: {:?}", order, orders.get(&order) );
-
-    // Car order #6: Used, Hard top
-    order = order + 1;
-    car = car_factory(order, 4000);
-    orders.insert(order, car);
-    println!("Car order {}: {:?}", order, orders.get(&order) );
+        // Reset miles for order variety
+        if miles == 2100 {
+            miles = 0;
+        } else {
+            miles = miles + 700;
+        }
+    }
 }
